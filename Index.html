@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teacher Interaction Coding Form v9.0</title>
+<style>
+[hidden]{display:none!important}
+:root{font-family:Arial,sans-serif;color:#243329;background:#f4f6f3}*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:28px}h1{font-size:27px;margin:0 0 8px}h2{font-size:19px;margin:0 0 16px}p{line-height:1.5}.muted{color:#59675e;font-size:14px}.panel{background:white;border:1px solid #d6dfd8;border-radius:12px;padding:22px;margin:20px 0}.metadata{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}label{display:block;font-size:14px;font-weight:bold}input{display:block;width:100%;margin-top:7px;border:1px solid #a9b6ad;border-radius:6px;padding:10px;font:inherit;color:inherit;background:white}input:focus,button:focus-visible{outline:3px solid #87b89b;outline-offset:2px}.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.group{border:0;padding:0;margin:0;min-width:0}legend{font-size:16px;font-weight:bold;margin-bottom:12px}.buttons{display:flex;flex-wrap:wrap;gap:8px}button,.filebutton{font:inherit;border:1px solid #a9b6ad;border-radius:7px;padding:10px 14px;background:white;color:#243329;cursor:pointer}button:hover,.filebutton:hover{background:#edf3ee}.choice{min-height:48px;flex:1;min-width:66px}.choice[aria-pressed=true]{background:#245e40;color:white;border-color:#245e40;box-shadow:inset 0 0 0 2px white}.choice small{display:block;margin-top:4px;font-size:11px}.sub{font-size:12px;color:#59675e;margin:12px 0 6px}.entry{display:grid;grid-template-columns:1fr 2fr;gap:16px;margin:20px 0}.primary{background:#245e40;color:white;border-color:#245e40}.primary:hover{background:#19472e}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.status{min-height:22px;margin:14px 0 0;color:#245e40;font-size:14px}.error{color:#a12626}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.statgroup{border-top:2px solid #c8d8cd;padding-top:10px}.statgroup h3{font-size:15px;margin:0 0 10px}.statrow{display:flex;justify-content:space-between;margin:8px 0}.total{font-size:16px;margin-bottom:18px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:12px 9px;border-bottom:1px solid #dae2dc;white-space:nowrap}th{background:#edf3ee}td.name{white-space:normal;min-width:130px}.small{font-size:12px;padding:6px 9px}.danger{color:#a12626}#load{display:none}.filebutton{font-weight:normal;margin:0}details summary{cursor:pointer;font-weight:bold}details p{font-size:14px}#empty{text-align:center;padding:22px;color:#59675e}@media(max-width:800px){main{padding:16px}.metadata,.choices,.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.metadata,.choices,.stats,.entry{grid-template-columns:1fr}}@media print{body{background:white}main{padding:0;max-width:none}.panel{padding:12px;border-radius:0;break-inside:avoid}#coding,.actions,.rowactions,details,.status,.intro{display:none}.metadata{grid-template-columns:repeat(4,1fr)}input{border:0;padding:0}.stats{grid-template-columns:repeat(4,1fr)}thead{display:table-header-group}tr{break-inside:avoid}@page{size:A4 landscape;margin:12mm}}
+select,textarea{width:100%;margin-top:7px;border:1px solid #a9b6ad;border-radius:6px;padding:10px;font:inherit;background:white;color:inherit}textarea{min-height:80px;resize:vertical}.sessiongrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.sessionlist{margin-bottom:16px}td.notes{white-space:pre-wrap;min-width:200px} @media(max-width:600px){.sessiongrid{grid-template-columns:1fr}}.coding-grid{min-width:1120px}.coding-grid th,.coding-grid td{padding:6px 4px;text-align:center}.coding-grid th{font-size:12px}.coding-grid input{margin:0;padding:8px 5px;font-size:13px;min-width:82px}.coding-grid textarea{margin:0;min-height:36px;height:36px;padding:7px 5px;font-size:13px;min-width:110px}.grid-choice{padding:0;min-width:34px;min-height:36px;font-size:13px;font-weight:bold;border-radius:5px}.grid-choice[aria-pressed=true]{background:#245e40;color:white;border-color:#245e40;box-shadow:inset 0 0 0 2px white}.code-cell{border-left:1px solid #e5eae6}.row-number{font-weight:bold}.sheet-nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0}.sheet-nav select{width:130px;margin:0}.protocol textarea{min-height:66px;line-height:1.5;margin-bottom:16px}button:disabled{opacity:.4;cursor:not-allowed}main{max-width:1500px}@media print{#coding{display:block}.sheet-nav,.rowactions{display:none}.coding-grid{min-width:0}.coding-grid input,.coding-grid textarea{min-width:0;border:0}.grid-choice{min-width:26px;min-height:26px}.coding-grid textarea{width:100%;height:36px}.protocol textarea{border:0}}
+
+/* Separate lesson context, interaction and target, including DP. */
+.coding-grid thead tr:first-child th:nth-child(3),
+.coding-grid thead tr:nth-child(2) th:nth-child(-n+3),
+.coding-grid tbody td:nth-child(n+3):nth-child(-n+5){background:#eaf3fc}
+.coding-grid thead tr:first-child th:nth-child(4),
+.coding-grid thead tr:first-child th:nth-child(5),
+.coding-grid thead tr:nth-child(2) th:nth-child(n+4):nth-child(-n+9),
+.coding-grid tbody td:nth-child(n+6):nth-child(-n+11){background:#fff4df}
+.coding-grid thead tr:first-child th:nth-child(6),
+.coding-grid thead tr:nth-child(2) th:nth-child(n+10):nth-child(-n+11),
+.coding-grid tbody td:nth-child(n+12):nth-child(-n+13){background:#e8f4ec}
+.coding-grid thead tr:first-child th:nth-child(3),
+.coding-grid thead tr:first-child th:nth-child(4),
+.coding-grid thead tr:first-child th:nth-child(6),
+.coding-grid thead tr:first-child th:nth-child(7),
+.coding-grid thead tr:nth-child(2) th:nth-child(1),
+.coding-grid thead tr:nth-child(2) th:nth-child(4),
+.coding-grid thead tr:nth-child(2) th:nth-child(10),
+.coding-grid tbody td:nth-child(3),
+.coding-grid tbody td:nth-child(6),
+.coding-grid tbody td:nth-child(12),
+.coding-grid tbody td:nth-child(14){border-left:3px solid #64746b}
+.coding-grid thead tr:nth-child(2) th:last-child{border-right:3px solid #64746b}
+@media print{.coding-grid th,.coding-grid td{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+/* Consistent Arial typography and compact comparison tables. */
+:root{font-family:Arial,sans-serif;font-size:15px;color:#28352e;background:#f5f5f1}
+body,input,textarea,select,button{font-family:Arial,sans-serif}
+main{max-width:1480px;padding:30px}
+h1{font-size:28px;line-height:1.25;font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+h2,details>summary{font-size:20px;line-height:1.35;font-weight:700}
+h2{margin-bottom:18px}h3{font-size:17px;line-height:1.4;font-weight:600}
+.panel{border-color:#dce3dd;box-shadow:0 2px 7px #24332905;padding:24px;margin:18px 0}
+details[open]>summary{margin-bottom:18px}
+details p{font-size:15px;line-height:1.65}
+.how-to summary{color:#0078d4}.protocol summary{color:#b42335}
+.how-to{border-left:4px solid #a56858}.protocol{border-left:4px solid #c86069}
+label,.muted,input,textarea,select,button{font-size:14px}
+.protocol label{font-weight:600;margin-top:14px}.protocol textarea{font-size:14px;line-height:1.6;background:#fcfdfb;border-color:#cbd7cd;border-radius:8px}
+table,.coding-grid th,.coding-grid input,.coding-grid textarea,.grid-choice{font-size:14px}
+.coding-grid th{font-weight:600}.grid-choice{font-weight:700}
+.sheet-nav{padding-top:12px;border-top:1px solid #e0e6e1;margin-top:18px}
+.summary-panel table{font-size:14px}.summary-panel th{font-size:14px;font-weight:600}
+.overview-table{margin-bottom:18px}.overview-table table{max-width:740px}
+.overview-table th,.overview-table td{text-align:center;width:33.33%}
+.overview-table td{font-size:14px;font-weight:700;padding:14px;background:#fafcf9}
+.summary-table{min-width:930px}.summary-table thead th{text-align:center;padding:11px 12px;background:#edf2ed}
+.summary-table thead tr:first-child th{background:#e3ece4;border-bottom:1px solid #cedbcf}
+.summary-table tbody td{text-align:right;font-variant-numeric:tabular-nums;padding:11px 12px}
+.summary-table tbody th{text-align:left;background:#fff;padding:11px 12px}
+.summary-table tbody tr:nth-child(even) td,.summary-table tbody tr:nth-child(even) th:not(.category-label){background:#f8faf7}
+.summary-table .category-label{vertical-align:middle;background:#f0f4ee;width:190px;white-space:normal}
+.summary-table .category-start>*{border-top:2px solid #c1d1c4}
+.summary-table tbody td:nth-last-child(2n){border-left:1px solid #dbe4dc}
+@media(max-width:800px){main{padding:16px}.panel{padding:18px}h1{font-size:25px}}
+@media print{.panel{box-shadow:none}.summary-table{min-width:0}.summary-table th,.summary-table td{padding:7px 8px}}
+.coding-instructions{padding-left:26px;margin:18px 0 0}.coding-instructions li{padding-left:6px;margin:0 0 14px;font-size:15px;line-height:1.65}.coding-instructions li:last-child{margin-bottom:0}
+.protocol h3{margin:24px 0 16px}.protocol h4{font-size:16px;font-weight:600;margin:20px 0 12px}
+.protocol-definition{table-layout:fixed;font-size:14px;margin-bottom:18px}
+.protocol-definition th,.protocol-definition td{border:1px solid #d4ddd5;padding:12px;white-space:normal;vertical-align:middle;text-align:left}
+.protocol-definition .protocol-group{width:155px;background:#edf2ed;font-weight:600}
+.protocol-definition .protocol-code{width:250px;background:#f5f7f3;font-weight:600}
+.protocol-definition textarea{margin:0;width:100%;min-height:65px;background:white;border-color:#dce4dc;font-size:14px;line-height:1.6;resize:vertical}
+@media(max-width:800px){.protocol-definition{min-width:740px}}
+
+/* Keep protocol headings bold and definition text at regular weight. */
+body,input,textarea,select,button,table{font-family:Arial,sans-serif}
+.protocol label,.protocol h3,.protocol h4,.protocol-definition th{font-weight:600}
+.protocol textarea{font-family:Arial,sans-serif;font-weight:400}
+
+.protocol-interaction-title{display:block;font-size:14px;font-weight:600;line-height:1.5}
+.protocol-definition textarea.protocol-positive-explanation{font-style:italic;font-weight:400;border:0;border-radius:0;background:transparent;padding:0;margin:10px 0 0;min-height:0;line-height:1.6}
+.coding-name-note{font-size:14px;line-height:1.6;margin:14px 0 0}.coding-grid input[aria-invalid="true"]{border-color:#b42335;background:#fff5f5}
+.keyboard-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 8px}
+.keyboard-controls button[aria-pressed="true"]{background:#245e40;color:white;border-color:#245e40}
+.keyboard-help{font-size:14px;line-height:1.6;margin:8px 0 14px}
+.coding-grid tr.keyboard-active{outline:2px solid #245e40;outline-offset:-2px}
+.coding-grid tr.keyboard-active .row-number{background:#245e40;color:white}
+.metadata input:focus{outline:3px solid #c25700;outline-offset:2px}
+.coding-grid .keyboard-cursor{outline:3px solid #c25700;outline-offset:2px}
+@media print{.coding-grid .keyboard-cursor{outline:0}.keyboard-controls,.keyboard-help{display:none}.coding-grid tr.keyboard-active{outline:0}.coding-grid tr.keyboard-active .row-number{background:transparent;color:inherit}}
+</style>
+<main>
+<h1>Teacher Interaction Coding Form v9.0</h1>
+<p class="muted intro">For every interaction, choose one lesson context, one interaction (positive or negative), and one target. This file works locally in your browser; it does not upload your records.</p>
+<section class="panel"><h2>Lesson details</h2><div class="metadata" id="metadata" aria-describedby="metadataKeyboardHelp"></div><p id="metadataKeyboardHelp" class="keyboard-help">Click any field, then use ← / → to move to the previous or next field and ↑ / ↓ to move between rows. Type to edit and press Enter to confirm. Use Shift + ← / → to select text.</p></section>
+
+<section class="panel protocol"><details><summary>Coding protocol</summary><div id="protocol"></div></details></section>
+<section class="panel" id="coding"><h2>Coding form</h2><p id="sheetProgress" class="muted"></p><div class="keyboard-controls"><button type="button" id="keyboardToggle" aria-pressed="false" aria-describedby="keyboardHelp">Keyboard coding: Off</button><span id="keyboardStatus" class="muted" role="status" aria-live="polite"></span></div><p id="keyboardHelp" class="keyboard-help" hidden>Use ← / → to move across codes and text fields, including Time stamp, Name addressed and Notes. Use ↑ / ↓ to move to the same column in the previous or next interaction row, including Name addressed and Notes. The orange outline marks the current cell. Press Enter to select a code or confirm text. Text is selected when you enter a field with the arrow keys, so you can type to replace it. Use Shift + Enter for a new line in Notes; use Shift + ← / → to select individual characters. Mouse editing remains available.</p><div class="tablewrap"><table class="coding-grid"><thead><tr><th rowspan="2">No.</th><th rowspan="2">Time stamp</th><th colspan="3">Lesson Context</th><th colspan="3">Positive Interaction</th><th colspan="3">Negative Interaction</th><th colspan="2">Target</th><th rowspan="2">Name addressed</th><th rowspan="2">Notes</th><th rowspan="2" class="rowactions"></th></tr><tr><th>I</th><th>T</th><th>P</th><th>GP</th><th>TP</th><th>CP</th><th>DE</th><th>DI</th><th>DP</th><th>IMP</th><th>PER</th></tr></thead><tbody id="codingRows"></tbody></table></div><div class="sheet-nav"><button id="previousSheet">Previous page</button><select id="sheetSelect" aria-label="Current coding page"></select><strong id="sheetTitle"></strong><button class="primary" id="nextSheet">Next page</button></div><p class="coding-name-note"><em>If you select Personal (PER), enter the student’s name in the Name addressed field. If a single praise statement addresses multiple students by name, record one interaction row for each named student (e.g., “Good job, Marie and Octavia!” = two interactions: one for Marie and one for Octavia). Complete all ten interactions, including required names and timestamps, before selecting Next page.</em></p><p id="status" class="status" role="status" aria-live="polite"></p></section>
+
+<section class="panel summary-panel"><h2>Counts and percentages</h2><div id="total" class="tablewrap overview-table"></div><p class="muted">Only complete interactions are counted. Each percentage uses the complete interaction total for its column: all interactions, Instruction, Transition or Practice. Positive and Negative Interaction combined total 100%. With no interactions, percentages are shown as —.</p><div class="tablewrap"><table class="summary-table"><thead><tr><th rowspan="2">Category</th><th rowspan="2">Code</th><th colspan="2">All interactions</th><th colspan="2">Instruction</th><th colspan="2">Transition</th><th colspan="2">Practice</th></tr><tr><th>Count</th><th>%</th><th>Count</th><th>%</th><th>Count</th><th>%</th><th>Count</th><th>%</th></tr></thead><tbody id="summaryRows"></tbody></table></div><p id="reliabilityStatus" class="muted" role="status"></p></section>
+<section class="panel"><h2>Save and export</h2><div class="actions"><button id="excel" class="primary">Export Excel (.xlsx)</button><button id="download">Save records (JSON)</button><label class="filebutton" for="load" tabindex="0">Open saved records (JSON)</label><input id="load" type="file" accept=".json,application/json"><button id="print">Print / Save as PDF</button><button id="new" class="danger">New lesson</button></div>
+<p class="muted" id="storage">Changes are saved automatically in this browser. Also use “Save records” before closing, to keep a portable backup.</p>
+</section>
+</main>
+<script>
+'use strict';
+const categories={Context:['I','T','P'],Interaction:['GP','TP','CP','DE','DI','DP'],Target:['IMP','PER']};
+const displayGroups=[['Lesson Context','Context',['I','T','P']],['Positive Interaction','Interaction',['GP','TP','CP']],['Negative Interaction','Interaction',['DE','DI','DP']],['Target','Target',['IMP','PER']]];
+const descriptions={I:'Instruction',T:'Transition',P:'Practice',GP:'General Praise',TP:'Behavior Specific Praise: Task',CP:'Behavior Specific Praise: Conduct',DE:'Direct Effective',DI:'Direct Ineffective',DP:'Direct Punitive',IMP:'Impersonal',PER:'Personal'};
+const fields={school:'School',academicYear:'Academic year',lesson:'Lesson',content:'Lesson content',teacher:'Teacher',grade:'Grade',studentCount:'Number of students',codingDate:'Date of Coding',observer:'Observer',lessonStart:'Lesson start time',lessonEnd:'Lesson end time'};
+const key='tonghe-teacher-interactions-v9.0';
+const $=id=>document.getElementById(id);
+function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
+const defaultProtocol={"Overview": "The coding of teacher interaction is a 3-level coding system. Observers code (1) what the lesson context is, (2) if the interaction is positive or negative, and (3) if the interaction is impersonal or personal. The technique used for coding is event recording, this means that every occurrence of a desired behavior is coded.", "Level 1: What the lesson context is?": "The first decision is the type of lesson context. Choose between the following contexts: instruction (I), transition (T) and practice (P).", "Level 2: Is the interaction positive or negative?": "The second decision is related to the type of interaction teacher provided. Two types of interaction are included: positive and negative. Choose between the following decisions if the interaction is positive: general praise (GP), behavior specific praise: task (TP), and Behavior specific praise: conduct (CP). Choose between the following decisions if the interaction is negative: direct effective (DE), direct ineffective (DI) and direct punitive (DP).", "Level 3: Is the interaction impersonal or personal?": "The third decision is if the interaction is personal or impersonal. Choose between the following decisions: impersonal (IMP) or personal (PER). In addition, write down the name the teacher addressed.", "I": "Time devoted to teaching subject matter and communicating appropriate and inappropriate ways of behaving, such as presenting tasks and teaching prosocial behaviors, including giving a high five after a goal.", "T": "Time devoted to managerial or organizational activities, such as selecting teams, changing equipment, moving between spaces or stations, explaining organizational arrangements, and switching activities within a lesson.", "P": "Time devoted to practicing skills, such as completing ball-passing drills or applying skills in a game setting.", "Positive Interaction": "Positive Interaction: verbal praise aims to reinforce the desired behavior", "GP": "Praise that does not identify a specific behavior, such as “Good job!”, “Great!” or “Well done!”", "TP": "Praise that identifies a specific behavior related to physical education content, such as “Nice pivot!”, “Great pass!” or “Well done for catching the ball with both hands!”\n\nIf a teacher asks a task-related question, such as “Should you catch the ball with one hand or two?”, and responds with “Thank you” after a student answers correctly, code this as Behavior Specific Praise: Task (TP).", "CP": "Praise that identifies a specific cooperative behavior, such as “Well done for moving quickly!” or “Thank you for listening carefully to the rules!”\n\nIf a teacher asks a conduct-related question, such as “What should you do when I’m talking?”, and responds with “Thank you” after a student answers correctly, code this as Behavior Specific Praise: Conduct (CP).", "DE": "Verbal interactions directed at students that explicitly refer to previously established rules or expectations, or specify what students should be doing. Examples include “Remember our rule: stop throwing the ball when I say ‘stop’” and “Can you stand still while I’m talking?”", "DI": "Verbal interactions directed at students that do not explicitly refer to previously established rules or expectations, or specify what students should be doing. Examples include “Stop talking!” and “You can’t do that!”", "IMP": "The interaction is directed at the whole class or a student without his/her name addressed.", "PER": "The interaction is directed at a specific student, and his/her name is addressed. If the teacher addresses multiple students by name within a single praise statement, code a separate interaction for each named student. For example, “Good job, Marie and Octavia!” should be coded as two interactions, one for Marie and one for Octavia.", "Name addressed": "Record the student’s name explicitly mentioned by the teacher.", "Coding conventions": "1. Complete all fields in the Lesson Details section.\n\n2. Begin coding when the teacher announces the start of the lesson, and stop coding when the teacher announces the end of the lesson.\n\n3. Use event recording to capture every occurrence of a target behavior. For each observed teacher interaction, apply the three-level coding system to identify the lesson context, interaction type, and interaction target.\n\n4. Record a timestamp for the first interaction and every fifth interaction thereafter (i.e., interactions 1, 6, 11, 16, and so on). Use mm:ss, separating minutes and seconds with a colon (e.g., 02:35 for 2 minutes and 35 seconds). Use two digits for seconds (00–59).\n\n5. While coding the context level, keep the teachers’ decision in mind while coding. For example, a teacher might say to children: “Ok, let’s start the practice now.” In case the class is divided into teams, or children are working in stations, code the lesson context based on what the majority (>50%) of the children are doing.\n\n6. Do not code corrective feedback on skills or general encouragement. Interactions are defined as verbal behaviors intended to reinforce desired student behaviors. A negative interaction must occur in response to an inappropriate student behavior.\n\n7. If the same type of interaction occurs multiple times within two seconds, code these occurrences as a single interaction.\n\n8. If you select Personal (PER), enter the student’s name in the Name addressed field. This field is required before you can move to the next page.\n\n9. Once all required fields for the ten interactions are completed, click Next page to continue coding the next ten interactions.\n\n10. Click Previous page at any time to review or edit previously coded interactions, even if the current page is incomplete. Entries on the current page will be retained.\n\n11. To save your work and continue coding later, click Save records (JSON) to download a backup. The next time you open the HTML coding form, click Open saved records (JSON) and select your saved JSON file to restore your work. Once you have finished coding the lesson, click Export Excel (.xlsx) to download the results for analysis. After saving, check the filename and rename it if needed to avoid confusing different coding records.\n\n12. If a teacher delivers a positive or negative interaction and provides further clarification of the desired behavior after a two-second interval, code these as separate interactions. For example, if the teacher says, “Stop doing that, Wout,” and then, two seconds later, says, “Keep the ball between your legs while I’m talking,” code the first interaction as DI, PER and the second as DE, IMP.", "Statistics": "Counts include complete rows only. Each interaction percentage within a lesson context = that interaction count in the context ÷ all complete interactions in the context × 100. Positive and Negative Interaction combined total 100%.", "DP": "Verbal interactions that use a punitive approach in response to student misbehavior, with or without reference to previously established rules or expectations. Examples include benching a student, yelling at a student, or withdrawing privileges."};
+const protocolRevision='2026-10-29';
+const protocolLabels={"GP": "General Praise (Good)", "TP": "Behavior Specific Praise: Task (positive evaluation + component of the task)", "CP": "Behavior Specific Praise: Conduct (positive evaluation + specific conduct-related behavior)"};
+const personalNameRule="If you select Personal (PER), enter the student’s name in the Name addressed field. This field is required before you can move to the next page.";
+function ensurePersonalConvention(text){if(text.includes(personalNameRule))return text;if(!/^1\.\s/.test(text))return text+'\n\n'+personalNameRule;const items=text.split(/\n+(?=\d+\.\s)/).map(item=>item.replace(/^\d+\.\s*/,''));items.splice(Math.min(7,items.length),0,personalNameRule);return items.map((item,i)=>(i+1)+'. '+item).join('\n\n');}
+function fresh(){return {version:9,protocolRevision,format:'ten-row-sheets',metadata:{},protocol:{...defaultProtocol},sheet:1,sheetCount:1,records:[]};}
+let state=fresh(),rowButtons={};
+// Arrow keys move the cursor; only Enter commits the highlighted code.
+let keyboardEnabled=false,activeCodingRow=1,activeChoiceIndex=0;
+const keyboardCodes=Object.values(categories).flat();
+function keyboardField(number,index){return index===-1?$('time-'+number):index===11?$('name-'+number):index===12?$('notes-'+number):null;}
+function updateKeyboardStatus(notice=''){
+ $('keyboardToggle').textContent='Keyboard coding: '+(keyboardEnabled?'On':'Off');
+ $('keyboardToggle').setAttribute('aria-pressed',String(keyboardEnabled));
+ $('keyboardHelp').hidden=!keyboardEnabled;
+ $('keyboardStatus').textContent=keyboardEnabled?'Interaction '+activeCodingRow+' · '+(keyboardCodes[activeChoiceIndex]||({[-1]:'Time stamp',11:'Name addressed',12:'Notes'})[activeChoiceIndex])+' highlighted · '+(notice||(keyboardField(activeCodingRow,activeChoiceIndex)?'Type to edit; Enter to confirm.':'Press Enter to select.')):'Mouse coding remains available.';
+}
+function refreshKeyboardRows(){
+ for(const row of $('codingRows').children){
+  const active=keyboardEnabled&&Number(row.dataset.number)===activeCodingRow;
+  row.className=active?'keyboard-active':'';
+  for(const index of [-1,11,12]){const field=keyboardField(Number(row.dataset.number),index);if(field)field.className=active&&index===activeChoiceIndex?'keyboard-cursor':'';}
+  (rowButtons[row.dataset.number]||[]).forEach((button,index)=>{button.className='grid-choice'+(active&&index===activeChoiceIndex?' keyboard-cursor':'');});
+ }
+ updateKeyboardStatus();
+}
+function focusActiveCodingRow(){
+ const cell=keyboardField(activeCodingRow,activeChoiceIndex)||rowButtons[activeCodingRow]?.[activeChoiceIndex];
+ if(cell){cell.focus({preventScroll:true});cell.select?.();cell.scrollIntoView({block:'nearest',inline:'nearest'});}
+}
+function selectCodingRow(number,event){
+ activeCodingRow=number;
+ const field=event?.target;
+ if(field?.id==='time-'+number)activeChoiceIndex=-1;
+ if(field?.id==='name-'+number)activeChoiceIndex=11;
+ if(field?.id==='notes-'+number)activeChoiceIndex=12;
+ const button=event?.target?.closest?.('.grid-choice');
+ if(button){const index=keyboardCodes.indexOf(button.dataset.code);if(index>=0)activeChoiceIndex=index;}
+ refreshKeyboardRows();
+}
+function handleMetadataKey(event){
+ const keys=Object.keys(fields),index=keys.findIndex(key=>event.target?.id==='meta-'+key);
+ if(index<0||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey||event.isComposing)return false;
+ if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter'].includes(event.key))return false;
+ event.preventDefault();
+ if(event.key==='Enter'){
+  if(event.repeat)return true;
+  event.target.blur?.();event.target.focus({preventScroll:true});
+  try{event.target.select();}catch(e){} // Native date/number inputs may not support text selection.
+  return true;
+ }
+ const columns=typeof getComputedStyle==='function'?getComputedStyle($('metadata')).gridTemplateColumns.trim().split(/\s+/).length:4;
+ const delta={ArrowLeft:-1,ArrowRight:1,ArrowUp:-columns,ArrowDown:columns}[event.key];
+ const next=index+delta;
+ if(next>=0&&next<keys.length){
+  const input=$('meta-'+keys[next]);input.focus({preventScroll:true});
+  try{input.select();}catch(e){}
+  input.scrollIntoView({block:'nearest',inline:'nearest'});
+ }
+ return true;
+}
+function handleCodingKey(event){
+ if(handleMetadataKey(event))return;
+ if(!keyboardEnabled||event.ctrlKey||event.metaKey||event.altKey||event.isComposing)return;
+ const target=event.target;
+ const inRowField=target?.closest?.('#codingRows')&&target?.closest?.('input,textarea');
+ if(inRowField){
+  if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();if(event.repeat)return;target.blur?.();focusActiveCodingRow();updateKeyboardStatus('Text confirmed.');return;}
+  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)||event.shiftKey)return;
+ }else if(target?.isContentEditable||target?.closest?.('input,textarea,select,[contenteditable]'))return;
+ if(target?.closest?.('button:not(.grid-choice),a,summary'))return;
+ if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){
+  event.preventDefault();
+  const start=(state.sheet-1)*10+1;
+  if(event.key==='ArrowLeft')activeChoiceIndex=Math.max(checkpoint(activeCodingRow)?-1:0,activeChoiceIndex-1);
+  if(event.key==='ArrowRight')activeChoiceIndex=Math.min(12,activeChoiceIndex+1);
+  if(event.key==='ArrowUp')activeCodingRow=Math.max(start,activeCodingRow-1);
+  if(event.key==='ArrowDown')activeCodingRow=Math.min(start+9,activeCodingRow+1);
+  if(activeChoiceIndex===-1&&!checkpoint(activeCodingRow))activeChoiceIndex=0;
+  refreshKeyboardRows();focusActiveCodingRow();return;
+ }
+ if(event.key==='Enter'){
+  event.preventDefault();
+  if(event.repeat)return;
+  const button=rowButtons[activeCodingRow]?.[activeChoiceIndex];
+  if(button){saveCell(activeCodingRow,button.dataset.category,button.dataset.code);updateKeyboardStatus(button.dataset.code+' selected.');}
+ }
+}
+$('keyboardToggle').addEventListener('click',()=>{
+ keyboardEnabled=!keyboardEnabled;
+ if(keyboardEnabled){const start=(state.sheet-1)*10+1;activeCodingRow=Array.from({length:10},(_,i)=>start+i).find(number=>!rowComplete(getRow(number)))||start;activeChoiceIndex=0;}
+ refreshKeyboardRows();if(keyboardEnabled)focusActiveCodingRow();
+});
+document.addEventListener('keydown',handleCodingKey);
+
+function normalizeTime(text){const s=text.trim();if(!/^\d{1,3}:\d{2}(?::\d{2})?$/.test(s))return null;const p=s.split(':').map(Number);if(p.at(-1)>59||(p.length===3&&p[1]>59))return null;return p.map(v=>String(v).padStart(2,'0')).join(':');}
+function checkpoint(number){return (number-1)%5===0;}
+function rowComplete(r){return r&&Object.entries(categories).every(([cat,opts])=>opts.includes(r[cat]))&&(!checkpoint(r.number)||normalizeTime(r.timestamp||'')!==null)&&(r.Target!=='PER'||(typeof r.name==='string'&&r.name.trim().length>0));}
+function completed(data=state){return data.records.filter(rowComplete);}
+function getRow(number,create=false){let r=state.records.find(r=>r.number===number);if(!r&&create){r={number,Context:'',Interaction:'',Target:'',timestamp:'',name:'',notes:''};state.records.push(r);state.records.sort((a,b)=>a.number-b.number);}return r;}
+function hasContent(r){return r&&['Context','Interaction','Target','timestamp','name','notes'].some(k=>r[k]);}
+function percentText(n,d){return d?(n/d*100).toFixed(1)+'%':'—';}
+function counts(records){const out={};for(const [cat,codes]of Object.entries(categories)){out[cat]=Object.fromEntries(codes.map(c=>[c,0]));for(const r of records)out[cat][r[cat]]++;}return out;}
+function message(text,error=false){$('status').textContent=text;$('status').className='status'+(error?' error':'');}
+function persist(){try{localStorage.setItem(key,JSON.stringify(state));$('storage').textContent='Changes saved in this browser. Also save a JSON backup.';}catch(e){$('storage').textContent='Browser saving is unavailable. Save a JSON backup to keep your work.';}}
+function upgrade(v){if(!v||![5,5.1,5.2,5.3,5.4,6,7,8,9].includes(v.version)||!v.metadata||Array.isArray(v.metadata)||typeof v.metadata!=='object'||Object.values(v.metadata).some(x=>typeof x!=='string')||!Array.isArray(v.records)||!['ten-row-sheets','reliability-checkpoints','interaction-timing','context-timing'].includes(v.format))return null;const records=v.records.map((r,i)=>({...r,Interaction:r.Interaction==='IE'?'DI':r.Interaction,number:v.format==='ten-row-sheets'?r.number:i+1})),ids=new Set();for(const r of records){if(!Number.isSafeInteger(r.number)||r.number<1||ids.has(r.number)||['timestamp','name','notes'].some(k=>typeof r[k]!=='string')||Object.entries(categories).some(([cat,opts])=>r[cat]!==''&&!opts.includes(r[cat])))return null;ids.add(r.number);}if(v.protocol&&(typeof v.protocol!=='object'||Array.isArray(v.protocol)||Object.values(v.protocol).some(x=>typeof x!=='string')))return null;const protocol={...(v.protocol||{})};if(typeof protocol.IE==='string'&&typeof protocol.DI!=='string')protocol.DI=protocol.IE;delete protocol.IE;for(const k of Object.keys(protocol))protocol[k]=protocol[k].replace(/\bIE\b/g,'DI');if(typeof protocol['Coding conventions']==='string')protocol['Coding conventions']=protocol['Coding conventions'].replace(/\bthree-part\b/g,'three-level').replace(/\n+(?=\d+\. )/g,'\n\n');if(typeof protocol['Coding conventions']==='string')protocol['Coding conventions']=ensurePersonalConvention(protocol['Coding conventions']);const maxSheet=Math.max(1,...records.map(r=>Math.ceil(r.number/10))),sheetCount=Number.isSafeInteger(v.sheetCount)&&v.sheetCount>=maxSheet?v.sheetCount:maxSheet,sheet=Number.isSafeInteger(v.sheet)&&v.sheet>=1&&v.sheet<=sheetCount?v.sheet:1;return {...v,version:9,protocolRevision,format:'ten-row-sheets',protocol:v.version<7?{...defaultProtocol}:{...defaultProtocol,...protocol,...(v.protocolRevision===protocolRevision?{}:{DE:defaultProtocol.DE,DI:defaultProtocol.DI,PER:defaultProtocol.PER,TP:defaultProtocol.TP,CP:defaultProtocol.CP,'Coding conventions':defaultProtocol['Coding conventions']})},previousProtocol:v.version<7||v.protocolRevision!==protocolRevision?{...(v.protocol||{})}:v.previousProtocol,sheetCount,sheet,records};}
+function updateNavigation(){const start=(state.sheet-1)*10+1,n=Array.from({length:10},(_,i)=>getRow(start+i)).filter(rowComplete).length;$('sheetTitle').textContent=`Page ${state.sheet} · Interactions ${start}–${start+9}`;$('sheetProgress').textContent=`${n} / 10 rows complete. Selections save automatically.`;$('previousSheet').disabled=state.sheet===1;$('nextSheet').disabled=n!==10;const select=$('sheetSelect');select.replaceChildren();for(let i=1;i<=state.sheetCount;i++){const o=el('option','Page '+i);o.value=String(i);select.append(o);}select.value=String(state.sheet);}
+function setNameRequirement(number,input=$('name-'+number)){if(!input)return;const r=getRow(number),required=r?.Target==='PER';input.required=required;input.placeholder=required?'Name required':'Optional';input.setAttribute('aria-required',String(required));input.setAttribute('aria-invalid',String(required&&!r?.name?.trim()));}
+function refreshRow(number){setNameRequirement(number);const r=getRow(number);for(const b of rowButtons[number]||[])b.setAttribute('aria-pressed',String(r?.[b.dataset.category]===b.dataset.code));}
+function saveCell(number,key,value){const r=getRow(number,true);r[key]=value;persist();refreshRow(number);renderSummary();updateNavigation();}
+function renderSheet(){rowButtons={};$('codingRows').replaceChildren();const start=(state.sheet-1)*10+1;if(activeCodingRow<start||activeCodingRow>start+9)activeCodingRow=start;if(activeChoiceIndex===-1&&!checkpoint(activeCodingRow))activeChoiceIndex=0;for(let number=start;number<start+10;number++){const r=getRow(number)||{},tr=el('tr');tr.dataset.number=String(number);tr.tabIndex=0;tr.setAttribute('aria-label','Interaction '+number);tr.addEventListener('click',event=>selectCodingRow(number,event));tr.addEventListener('focusin',event=>selectCodingRow(number,event));tr.append(el('td',String(number),'row-number'));const time=el('td');if(checkpoint(number)){const input=el('input');input.id='time-'+number;input.value=r.timestamp||'';input.placeholder='mm:ss';input.setAttribute('aria-label','Reliability timestamp for interaction '+number);input.addEventListener('input',()=>saveCell(number,'timestamp',input.value.trim()));input.addEventListener('change',()=>{if(!input.value.trim())return;const normalized=normalizeTime(input.value);if(!normalized){message('Use mm:ss or hh:mm:ss for interaction '+number+'.',true);return;}input.value=normalized;saveCell(number,'timestamp',normalized);message('');});time.append(input);}else time.append(el('span','—','muted'));tr.append(time);rowButtons[number]=[];
+ for(const [,cat,codes]of displayGroups)for(const code of codes){const td=el('td',undefined,'code-cell'),b=el('button',code,'grid-choice');b.type='button';b.dataset.number=String(number);b.dataset.category=cat;b.dataset.code=code;b.setAttribute('aria-label','Interaction '+number+': '+code);b.setAttribute('aria-pressed',String(r[cat]===code));b.addEventListener('click',()=>{const row=getRow(number,true);saveCell(number,cat,row[cat]===code?'':code);message('');});rowButtons[number].push(b);td.append(b);tr.append(td);}
+ for(const k of ['name','notes']){const td=el('td'),input=el(k==='notes'?'textarea':'input');input.id=k+'-'+number;input.value=r[k]||'';if(k==='name')setNameRequirement(number,input);input.setAttribute('aria-label',(k==='name'?'Name addressed':'Notes')+' for interaction '+number);input.addEventListener('input',()=>saveCell(number,k,input.value));td.append(input);tr.append(td);}const td=el('td',undefined,'rowactions'),clear=el('button','Clear','small danger');clear.addEventListener('click',()=>{if(hasContent(getRow(number))&&!confirm('Clear interaction '+number+'? Other row numbers stay the same.'))return;state.records=state.records.filter(r=>r.number!==number);persist();renderSheet();renderSummary();});td.append(clear);tr.append(td);$('codingRows').append(tr);}updateNavigation();refreshKeyboardRows();}
+function renderMatrix(){const missing=state.records.filter(r=>hasContent(r)&&checkpoint(r.number)&&normalizeTime(r.timestamp||'')===null).map(r=>r.number);$('reliabilityStatus').textContent=missing.length?'Reliability timestamp missing or invalid at interactions '+missing.join(', ')+'. These rows are not yet counted.':'';const missingNames=state.records.filter(r=>r.Target==='PER'&&!r.name.trim()).map(r=>r.number);if(missingNames.length)$('reliabilityStatus').textContent+=' Names required for Personal (PER) at interactions '+missingNames.join(', ')+'. These rows are not yet counted.';}
+function renderStatistics(){
+ const all=completed(),drafts=state.records.filter(r=>hasContent(r)&&!rowComplete(r)).length,overview=el('table'),head=el('thead'),headRow=el('tr');for(const label of ['Complete interactions','Incomplete rows','Names addressed'])headRow.append(el('th',label));head.append(headRow);overview.append(head);const body=el('tbody'),values=el('tr');for(const value of [all.length,drafts,all.filter(r=>r.name.trim()).length])values.append(el('td',String(value)));body.append(values);overview.append(body);$('total').replaceChildren(overview);
+ const scopes=[all,...categories.Context.map(c=>all.filter(r=>r.Context===c))],tallies=scopes.map(counts);$('summaryRows').replaceChildren();
+ for(const [label,cat,codes]of displayGroups)codes.forEach((code,index)=>{const tr=el('tr',undefined,index===0?'category-start':undefined);if(index===0){const category=el('th',label,'category-label');category.rowSpan=codes.length;category.setAttribute('scope','rowgroup');tr.append(category);}const codeCell=el('th',code);codeCell.setAttribute('scope','row');tr.append(codeCell);scopes.forEach((records,i)=>tr.append(el('td',String(tallies[i][cat][code])),el('td',percentText(tallies[i][cat][code],records.length))));$('summaryRows').append(tr);});
+}
+function renderSummary(){renderMatrix();renderStatistics();}
+function render(){renderSheet();renderSummary();}
+function syncMetadata(){for(const k of Object.keys(fields))$('meta-'+k).value=state.metadata[k]||'';for(const k of Object.keys(defaultProtocol))$('protocol-'+k).value=k==='Positive Interaction'?state.protocol[k].replace(/^Positive Interaction:\s*/i,''):state.protocol[k];}
+for(const [k,label]of Object.entries(fields)){const l=el('label',label),i=el('input');i.id='meta-'+k;if(k==='codingDate')i.type='date';if(k==='studentCount'){i.type='number';i.min='1';i.step='1';i.inputMode='numeric';}if(k==='academicYear')i.placeholder='i.e. 2021-2022';if(k==='lessonStart'||k==='lessonEnd')i.placeholder='mm:ss or hh:mm:ss';i.addEventListener('input',()=>{state.metadata[k]=i.value;persist();});l.append(i);$('metadata').append(l);}
+function protocolInput(k){const value=defaultProtocol[k],input=el('textarea');input.id='protocol-'+k;input.value=value;input.rows=Math.max(2,value.split('\n').reduce((n,line)=>n+Math.max(1,Math.ceil(line.length/90)),0)+1);input.setAttribute('aria-label',descriptions[k]||k);input.addEventListener('input',()=>{state.protocol[k]=input.value;persist();});return input;}
+function protocolParagraph(k){const label=el('label',k);label.append(protocolInput(k));$('protocol').append(label);}
+for(const k of ['Overview',...Object.keys(defaultProtocol).filter(k=>k.startsWith('Level '))])protocolParagraph(k);
+$('protocol').append(el('h3','Coding definitions'));
+function definitionTable(title,groups){$('protocol').append(el('h4',title));const wrap=el('div',undefined,'tablewrap'),table=el('table',undefined,'protocol-definition'),body=el('tbody');for(const [group,codes]of groups)codes.forEach((code,i)=>{const tr=el('tr');if(group&&i===0){const cell=el('th',group==='Positive Interaction'?'':group,'protocol-group');if(group==='Positive Interaction'){cell.append(el('strong','Positive Interaction','protocol-interaction-title'));const groupInput=el('textarea');groupInput.id='protocol-Positive Interaction';groupInput.className='protocol-positive-explanation';groupInput.rows=6;groupInput.value=defaultProtocol['Positive Interaction'].replace(/^Positive Interaction:\s*/i,'');groupInput.setAttribute('aria-label','Positive Interaction explanation');groupInput.addEventListener('input',()=>{state.protocol['Positive Interaction']='Positive Interaction: '+groupInput.value;persist();});cell.append(groupInput);}cell.rowSpan=codes.length;cell.setAttribute('scope','rowgroup');tr.append(cell);}const name=el('th',descriptions[code]?(protocolLabels[code]||descriptions[code])+' ('+code+')':code,'protocol-code');name.setAttribute('scope','row');tr.append(name);const definition=el('td');definition.append(protocolInput(code));tr.append(definition);body.append(tr);});table.append(body);wrap.append(table);$('protocol').append(wrap);}
+definitionTable('Level 1: Lesson Context',[[null,['I','T','P']]]);
+definitionTable('Level 2: Type of interaction',[['Positive Interaction',['GP','TP','CP']],['Negative Interaction',['DE','DI','DP']]]);
+definitionTable('Level 3: Target',[[null,['IMP','PER','Name addressed']]]);
+for(const k of ['Coding conventions','Statistics'])protocolParagraph(k);
+function download(text,filename,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=el('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function filename(suffix){return 'Teacher_interactions_v9.0'+(state.metadata.academicYear?'_'+state.metadata.academicYear:'')+suffix;}
+function requestFilename(suffix){
+ const label=suffix==='.json'?'JSON backup':'Excel export';
+ const entered=window.prompt('Enter a file name for your '+label+' ('+suffix+').',filename(suffix));
+ if(entered===null)return null;
+ const base=entered.trim().replace(/[\\/:*?"<>|\u0000-\u001f]/g,'_').replace(/(?:\.(?:json|xlsx))+$/i,'').replace(/[. ]+$/g,'');
+ if(!base){message('Please enter a file name before saving.',true);return null;}
+ return base+suffix;
+}
+function xml(v){return String(v??'').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');}
+function columnName(n){let s='';for(n++;n>0;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;}
+function sheetXml(rows,widths,filter=false,cellStyle=null){
+ const cells=rows.map((row,i)=>`<row r="${i+1}" ht="26" customHeight="1">${Array.from({length:cellStyle?widths.length:row.length},(_,j)=>{const value=row[j],ref=columnName(j)+(i+1),baseStyle=i===0?1:(value&&typeof value==='object'?value.style||0:0),style=cellStyle?cellStyle(i,j,baseStyle):baseStyle;if(value&&typeof value==='object'&&'formula'in value)return `<c r="${ref}" s="${style}"><f>${xml(value.formula)}</f>${typeof value.cached==='number'?`<v>${value.cached}</v>`:''}</c>`;if(value&&typeof value==='object'&&'number'in value)return `<c r="${ref}" s="${style}"><v>${value.number}</v></c>`;if(value===null||value===undefined||value==='')return `<c r="${ref}" s="${style}"/>`;if(typeof value==='number')return `<c r="${ref}" s="${style}"><v>${value}</v></c>`;return `<c r="${ref}" s="${style}" t="inlineStr"><is><t xml:space="preserve">${xml(value)}</t></is></c>`;}).join('')}</row>`).join('');
+ const area=`A1:${columnName(widths.length-1)}${rows.length}`;
+ return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><dimension ref="${area}"/><sheetViews><sheetView workbookViewId="0" showGridLines="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="26"/><cols>${widths.map((width,i)=>`<col min="${i+1}" max="${i+1}" width="${width}" customWidth="1"/>`).join('')}</cols><sheetData>${cells}</sheetData>${filter?`<autoFilter ref="${area}"/>`:''}<pageMargins left="0.3" right="0.3" top="0.4" bottom="0.4" header="0.2" footer="0.2"/><pageSetup paperSize="9" orientation="landscape"/></worksheet>`;
+}
+function zipStore(files){
+ const encoder=new TextEncoder(),chunks=[],central=[];let offset=0;
+ const table=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;return c>>>0;});
+ const crc32=bytes=>{let c=0xffffffff;for(const b of bytes)c=table[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0;};
+ for(const [path,text]of Object.entries(files)){const name=encoder.encode(path),data=encoder.encode(text),crc=crc32(data);const h=new Uint8Array(30),v=new DataView(h.buffer);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(12,33,true);v.setUint32(14,crc,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,name.length,true);chunks.push(h,name,data);
+ const c=new Uint8Array(46),cv=new DataView(c.buffer);cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);cv.setUint16(8,0x800,true);cv.setUint16(14,33,true);cv.setUint32(16,crc,true);cv.setUint32(20,data.length,true);cv.setUint32(24,data.length,true);cv.setUint16(28,name.length,true);cv.setUint32(42,offset,true);central.push(c,name);offset+=h.length+name.length+data.length;}
+ const size=central.reduce((n,c)=>n+c.length,0),e=new Uint8Array(22),ev=new DataView(e.buffer);ev.setUint32(0,0x06054b50,true);ev.setUint16(8,Object.keys(files).length,true);ev.setUint16(10,Object.keys(files).length,true);ev.setUint32(12,size,true);ev.setUint32(16,offset,true);const all=[...chunks,...central,e],out=new Uint8Array(offset+size+22);let p=0;for(const b of all){out.set(b,p);p+=b.length;}return out;
+}
+function recordRows(data){return [['No.','Reliability time stamp','Lesson Context','Positive Interaction','Negative Interaction','Target','Name addressed','Notes','Page','Status',...Object.values(fields)],...data.records.filter(hasContent).sort((a,b)=>a.number-b.number).map(r=>[r.number,r.timestamp,r.Context,['GP','TP','CP'].includes(r.Interaction)?r.Interaction:'',['DE','DI','DP'].includes(r.Interaction)?r.Interaction:'',r.Target,r.name.trim(),r.notes,Math.ceil(r.number/10),rowComplete(r)?'Complete':'Incomplete',...Object.keys(fields).map(k=>k==='studentCount'&&/^[1-9]\d*$/.test(data.metadata[k]||'')?Number(data.metadata[k]):data.metadata[k]||'')])];}
+function buildExcel(data){
+ const keys=Object.keys(fields),rows=recordRows(data),last=Math.max(2,data.records.filter(hasContent).length+1),summaryRows=[['Scope','Category','Code','Count','Percentage']],cols={Context:'C',Interaction:'D',Target:'F'},range=c=>`Records!$${c}$2:$${c}$${last}`;
+ for(const context of [null,...categories.Context]){const records=context?completed(data).filter(r=>r.Context===context):completed(data),tally=counts(records),scope=context?descriptions[context]:'Whole lesson',criterion=`${range('J')},"Complete",`+(context?`${range('C')},"${context}",`:''),denominatorRow=summaryRows.length+1;
+ summaryRows.push([scope,'Overall','Interactions',{formula:context?`COUNTIFS(${range('J')},"Complete",${range('C')},"${context}")`:`COUNTIFS(${range('J')},"Complete")`,cached:records.length}],[scope,'Overall','Names addressed',{formula:`SUMPRODUCT((${range('J')}="Complete")*(${range('G')}<>"")${context?`*(${range('C')}="${context}")`:""})`,cached:records.filter(r=>r.name.trim()).length}]);
+ for(const[label,cat,codes]of displayGroups)for(const code of codes)summaryRows.push([scope,label,code,{formula:`COUNTIFS(${criterion}${range(cat==='Interaction'&&['DE','DI','DP'].includes(code)?'E':cols[cat])},"${code}")`,cached:tally[cat][code]},{formula:`IF(D${denominatorRow}=0,"",D${summaryRows.length+1}/D$${denominatorRow})`,cached:records.length?tally[cat][code]/records.length:null,style:2}]);
+ }
+ const matrixRows=[['Interaction','Description','Instruction count','Instruction %','Transition count','Transition %','Practice count','Practice %']];
+ for(const code of categories.Interaction){const row=[code,descriptions[code]],col=['GP','TP','CP'].includes(code)?'D':'E';for(const context of categories.Context){const records=completed(data).filter(r=>r.Context===context),n=records.filter(r=>r.Interaction===code).length,countColumn=columnName(row.length),excelRow=matrixRows.length+1;row.push({formula:`COUNTIFS(${range('J')},"Complete",${range('C')},"${context}",${range(col)},"${code}")`,cached:n},{formula:`IF(COUNTIFS(${range('J')},"Complete",${range('C')},"${context}")=0,"",${countColumn}${excelRow}/COUNTIFS(${range('J')},"Complete",${range('C')},"${context}"))`,cached:records.length?n/records.length:null,style:2});}matrixRows.push(row);}
+ const protocolRows=[["Topic","Definition"],...Object.entries(data.protocol||defaultProtocol)];
+ const files={
+ '[Content_Types].xml':'<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet4.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>',
+ '_rels/.rels':'<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
+ 'xl/workbook.xml':'<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Records" sheetId="1" r:id="rId1"/><sheet name="Total counts" sheetId="2" r:id="rId2"/><sheet name="Interaction by context" sheetId="3" r:id="rId4"/><sheet name="Coding protocol" sheetId="4" r:id="rId5"/></sheets><calcPr calcId="191029" fullCalcOnLoad="1"/></workbook>',
+ 'xl/_rels/workbook.xml.rels':'<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet4.xml"/><Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet3.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',
+ 'xl/styles.xml':'<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="2"><numFmt numFmtId="164" formatCode="0.0%"/><numFmt numFmtId="165" formatCode="[h]:mm:ss"/></numFmts><fonts count="2"><font><sz val="11"/><name val="Arial"/><color rgb="FF243329"/></font><font><b/><sz val="11"/><name val="Arial"/><color rgb="FFFFFFFF"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF245E40"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="3"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="medium"><color rgb="FF52665A"/></left><right/><top/><bottom/><diagonal/></border><border><left/><right/><top style="medium"><color rgb="FF52665A"/></top><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="7"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="2" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>',
+ 'xl/worksheets/sheet1.xml':sheetXml(rows,[7,14,22,24,24,18,24,40,12,18,...keys.map(k=>k==='content'?35:22)],true),
+ // Separate scope blocks horizontally, including the blank Percentage cell.
+ 'xl/worksheets/sheet2.xml':sheetXml(summaryRows,[20,18,24,14,18],false,(row,col,style)=>row>0&&summaryRows[row][0]!==summaryRows[row-1][0]?6:style),
+ // Keep each context's Count and Percentage together behind one solid divider.
+ 'xl/worksheets/sheet3.xml':sheetXml(matrixRows,[14,42,24,24,24,24,24,24],false,(row,col,style)=>[2,4,6].includes(col)?(row===0?5:4):style),
+ 'xl/worksheets/sheet4.xml':sheetXml(protocolRows,[20,110]).replace(/<row r="(\d+)" ht="26"/g,(_,n)=>{const text=String(protocolRows[Number(n)-1][1]||''),lines=text.split('\n').reduce((sum,line)=>sum+Math.max(1,Math.ceil(line.length/110)),0),height=Number(n)===1?26:Math.max(26,lines*16+12);return `<row r="${n}" ht="${height}"`;})};
+ return zipStore(files);
+}
+$('nextSheet').addEventListener('click',()=>{const start=(state.sheet-1)*10+1;if(!Array.from({length:10},(_,i)=>getRow(start+i)).every(rowComplete))return message('Complete all ten rows, including both reliability timestamps and a name for every Personal (PER) interaction, before Next page.',true);state.sheet++;state.sheetCount=Math.max(state.sheetCount,state.sheet);persist();render();message('');$('coding').scrollIntoView({behavior:'smooth'});});
+$('previousSheet').addEventListener('click',()=>{if(state.sheet>1){state.sheet--;persist();render();message('');}});
+$('sheetSelect').addEventListener('change',()=>{const target=Number($('sheetSelect').value),start=(state.sheet-1)*10+1;if(target>state.sheet&&!Array.from({length:10},(_,i)=>getRow(start+i)).every(rowComplete)){$('sheetSelect').value=String(state.sheet);return message('Complete this page, including names for Personal (PER) interactions, before moving forward.',true);}state.sheet=target;persist();render();message('');});
+$('excel').addEventListener('click',()=>{const name=requestFilename('.xlsx');if(name===null)return;download(buildExcel(state),name,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');message('Excel download started: '+name);});
+$('download').addEventListener('click',()=>{const name=requestFilename('.json');if(name===null)return;download(JSON.stringify(state,null,2),name,'application/json');message('JSON download started: '+name);});
+$('load').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const restored=upgrade(JSON.parse(await file.text()));if(!restored)throw Error('Invalid');if(state.records.length&&!confirm('Replace this lesson with the saved file? Save a JSON backup first if needed.'))return;state=restored;syncMetadata();persist();render();message('Saved records opened.');}catch(err){message('Could not open this file. Choose a JSON file saved by v9.0, v8.0, v7.0, v6.0, v5.4, v5.3, v5.2, v5.1 or v5.0.',true);}finally{e.target.value='';}});
+$('new').addEventListener('click',()=>{if(!confirm('Start an empty lesson? Save a JSON backup first.'))return;const protocol={...state.protocol};state=fresh();state.protocol=protocol;activeCodingRow=1;activeChoiceIndex=0;syncMetadata();persist();render();message('New lesson started.');});$('print').addEventListener('click',()=>window.print());
+document.querySelector('.filebutton').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('load').click();}});
+try{const saved=upgrade(JSON.parse(localStorage.getItem(key)||localStorage.getItem('tonghe-teacher-interactions-v8.0')||'null'));if(saved)state=saved;}catch(e){}
+syncMetadata();render();
+
+</script>
+</html>
